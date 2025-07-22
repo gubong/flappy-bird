@@ -1,12 +1,13 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-const GRAVITY = 0.5;
-const FLAP = -8;
+const GRAVITY = 0.35; // 중력 감소
+const FLAP = -7; // 점프 힘 약간 감소
 const BIRD_SIZE = 30;
 const PIPE_WIDTH = 60;
 const PIPE_GAP = 150;
-const PIPE_INTERVAL = 90;
+const PIPE_INTERVAL = 110; // 파이프 생성 간격 증가
+const PIPE_SPEED = 1.3; // 파이프 이동 속도 감소
 
 let birdY = canvas.height / 2;
 let birdV = 0;
@@ -67,7 +68,7 @@ function update() {
 
   // 파이프 이동 및 충돌 체크
   for (let i = pipes.length - 1; i >= 0; i--) {
-    pipes[i].x -= 2;
+    pipes[i].x -= PIPE_SPEED;
     // 충돌 체크
     if (
       80 + BIRD_SIZE / 2 > pipes[i].x &&
